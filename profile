@@ -1,3 +1,3 @@
-web: app.js
+web: ./bin/www
 
-web: app.js
+web: ./bin/www
