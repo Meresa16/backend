@@ -48,7 +48,7 @@ function get_all_comment(req, res, next) {
                 });
             }
             else {
-                console.log(doc)
+               // console.log(doc)
                 res.json({
                     count: doc.length,
                    
@@ -57,6 +57,7 @@ function get_all_comment(req, res, next) {
                             _id: data._id,
                             description: data.description,
                             createdAt: data.createdAt,
+                            updatdAt:data.updatedAt,
                             //email: data.user,
                             request: {
                                 type: "GET",
@@ -90,7 +91,7 @@ function get_comment(req, res, next) {
                     description: doc.description,
                     _id: doc._id,
                     createdAt: doc.createdAt,
-
+                    updatedAt:doc.updatedAt,
                     request: {
                         type: "GET",
                         description: "click the link to get all comment ",

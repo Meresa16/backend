@@ -8,11 +8,7 @@ var bodyParser=require('body-parser');
 const config=require('./config/dev.config')
 const cors=require('cors');
 
-//var indexRouter = require('./routes/index');
-//var usersRouter = require('./routes/users');
-//var commentRouter=require('./routes/comment');
-//var productRouter=require('./routes/product');
-//var orderRoute=require('./routes/order')
+
 
 var app = express();
 
@@ -43,11 +39,6 @@ app.use((req, res, next) => {
   next();
 });
 require('./routes/index')(app);
-//app.use('/', indexRouter);
-//app.use('/users', usersRouter);
-//app.use('/comment',commentRouter);
-//app.use('/product',productRouter);
-//app.use('/order',orderRoute)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
