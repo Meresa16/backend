@@ -7,20 +7,15 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 const config = require('./config/dev.config')
 const cors = require('cors');
-
-
-
 var app = express();
-
 // view engine setup
-/* app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade'); */
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/dist'))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'frontend')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors({ origin: 'http://localhost:4200' }));
@@ -61,13 +56,13 @@ mongoose.connect(process.env.MONGODB_URI || config.database, {
         useUnifiedTopology: true,
         useNewUrlParser: true,
         useCreateIndex: true,
-        useFindAndModify: false
+        useFindAndModify: false,
     },
     function(err) {
         if (err) {
             console.log(err);
         } else {
-            console.log('successfully connected to db'); /**/
+            console.log('successfully connected to database....'); /**/
         }
     });
 
