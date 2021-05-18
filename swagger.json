@@ -1,0 +1,362 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "demo",
+        "description": " This is the first demo project",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "Meresa",
+            "email": "meresa@gmail.com"
+        },
+        "license": {
+            "name": "Demo platform",
+            "url": "http://localhost:3000/api/comment"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/comment": {
+            "post": {
+                "description": "create a comment ",
+                "summary": "simply create a comment",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "operationId": "www",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "comment",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/comment"
+                        },
+                        "description": "create a comment"
+                    }
+                ],
+                "tags": [
+                    "comment"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successfully created"
+                    }
+                }
+            }
+        },
+        "/comment/": {
+            "get": {
+                "description": "returns all comments",
+                "summary": "gets all comments",
+                "operationId": "comments",
+                "produces": [
+                    "application/json",
+                    "application/xml",
+                    "text/xml",
+                    "text/html"
+                ],
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "tags": [
+                    "comment"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "comment",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/comment"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "un expected error",
+                        "schema": {
+                            "$ref": "#/definitions/comment"
+                        }
+                    }
+                }
+            }
+        },
+        "/comment/{id}": {
+            "get": {
+                "summary": "get comment by id",
+                "operationId": "get by id",
+                "description": "comment ",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "enter id ",
+                        "default": "604581e8b0eecc371ca16bf5",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "comment"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "get comment by id",
+                        "schema": {
+                            "$ref": "#/definitions/comment"
+                        }
+                    }
+                }
+            }
+        },
+        "/comment/update/{id}": {
+            "put": {
+                "summary": "get comment by id",
+                "operationId": "update by id",
+                "description": "update comment ",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "enter id ",
+                        "default": "604581e8b0eecc371ca16bf5",
+                        "type": "string",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "description": "test1",
+                        "name": "descrptiion",
+                        "schema": {
+                            
+                                "$ref": "#/definitions/comment"
+        
+                        }
+                    }
+                ],
+                "tags": [
+                    "comment"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "get comment by id",
+                        "schema": {
+                            "type": "string",
+                            "$ref": "#/definitions/comment"
+                        }
+                    }
+                }
+            }
+        },
+        "/comment/delet/{id}": {
+            "delete": {
+                "summary": "delet comment by id",
+                "operationId": "delet by id",
+                "description": "delet comment ",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "enter id ",
+                        "default": "604581e8b0eecc371ca16bf5",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "tags": [
+                    "comment"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "get comment by id",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/product/": {
+            "get": {
+                "description": "get all products",
+                "summary": "all product list",
+                "operationId": "products",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "get product"
+                    }
+                },
+                "tags": [
+                    "product"
+                ]
+            }
+        },
+        "/product/{productId}": {
+            "get": {
+                "description": "single product display ",
+                "summary": "get product ",
+                "operationId": "product",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "Id",
+                        "default": "60464badb501e14018153d8d",
+                        "description": "Enter product Id",
+                        "type": "string",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "get product by id"
+                    }
+                },
+                "tags": [
+                    "product"
+                ]
+            }
+        },
+        "/news": {
+            "post": {
+                "summary": "you can created a news",
+                "operationId": "post",
+                "tags": [
+                    "news"
+                ],
+                "description": "news posts",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [ 
+                    {
+                        "name": "tittle",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/news"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "news created successfully  "
+                    }
+                }
+            }
+        },
+        "/news/":{
+            "get": {
+                "consumes":[
+                    "application/json",
+                    "application/xml"
+                ],
+                "summary": "all news",
+                "operationId": "all news info",
+                "tags": ["news"],
+                "produces":[
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200":{
+                        "description": "list of news",
+                    "schema":{
+                        "$ref": "#/definitions/news"
+                    }
+                    }
+                }
+            }
+        },
+        "/news/{newsId}":{
+            "get": {
+                "summary": "display news",
+                "operationId": "get all",
+                "tags": ["news"],
+                "description": "returns news info",
+                "consumes":[
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "news",
+                        "type": "string",
+                        "description": "enter news id",
+                        "default":"60a1152e75566c33fc674c7f",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "display all news"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "comment": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "example": "test"
+                }
+            }
+        },
+        "news": {
+            "properties": {
+                "tittle": {
+                    "type": "string",
+                    "example": "test"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "yyy"
+                }
+            }
+        }
+    }
+}
