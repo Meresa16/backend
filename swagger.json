@@ -14,7 +14,7 @@
             "url": "http://"
         }
     },
-    "host": "http://meresa16.herokuapp.com",
+    "host": "https://meresa16.herokuapp.com",
     "basePath": "/api",
     "schemes": [
         "http",
