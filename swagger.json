@@ -7,14 +7,14 @@
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
             "name": "Meresa",
-            "email": "meresa@gmail.com"
+            "email": "meresagidey2019@gmail.com"
         },
         "license": {
             "name": "Demo platform",
-            "url": "http://localhost:3000/api/comment"
+            "url": "http://"
         }
     },
-    "host": "localhost:3000",
+    "host": "https://meresa16.herokuapp.com",
     "basePath": "/api",
     "schemes": [
         "http",
