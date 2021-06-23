@@ -94,9 +94,10 @@ function login(req, res, next) {
 }
 
 function changepassword(req, res, next) {
-    User.find({ _id: req.body._id })
+    const { email } = req.body;
+    User.findOne({ email })
         .then(user => {
-            if (user.length < 1) {
+            if (err || user.length < 1) {
                 return res.status({
                     mesage: "auth failed"
                 });

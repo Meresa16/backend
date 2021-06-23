@@ -68,11 +68,6 @@
                     "text/xml",
                     "text/html"
                 ],
-                "security": [
-                    {
-                        "Bearer": []
-                    }
-                ],
                 "tags": [
                     "comment"
                 ],
@@ -150,9 +145,7 @@
                         "description": "test1",
                         "name": "descrptiion",
                         "schema": {
-                            
-                                "$ref": "#/definitions/comment"
-        
+                            "$ref": "#/definitions/comment"
                         }
                     }
                 ],
@@ -198,6 +191,36 @@
                         "schema": {
                             "type": "string"
                         }
+                    }
+                }
+            }
+        },
+        "/product": {
+            "post": {
+                "summary": "create a product",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "tags": [
+                    "product"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "create product",
+                        "schema": {
+                            "$ref": "#/definitions/product"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "post and display products"
                     }
                 }
             }
@@ -257,6 +280,72 @@
                 ]
             }
         },
+        "/product/update/{productId}": {
+            "put": {
+                "description": "single product display ",
+                "summary": "get product ",
+                "operationId": "update product",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "Id",
+                        "description": "update product",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/product"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "product"
+                    }
+                },
+                "tags": [
+                    "product"
+                ]
+            }
+        },
+        "/product/delete/{productId}": {
+            "delete": {
+                "description": "delete product  ",
+                "summary": "get product ",
+                "operationId": "delete product",
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "Id",
+                        "description": "delete product by id",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "product"
+                    }
+                },
+                "tags": [
+                    "product"
+                ]
+            }
+        },
         "/news": {
             "post": {
                 "summary": "you can created a news",
@@ -269,7 +358,7 @@
                     "application/json",
                     "application/xml"
                 ],
-                "parameters": [ 
+                "parameters": [
                     {
                         "name": "tittle",
                         "in": "body",
@@ -285,36 +374,40 @@
                 }
             }
         },
-        "/news/":{
+        "/news/": {
             "get": {
-                "consumes":[
+                "consumes": [
                     "application/json",
                     "application/xml"
                 ],
                 "summary": "all news",
                 "operationId": "all news info",
-                "tags": ["news"],
-                "produces":[
+                "tags": [
+                    "news"
+                ],
+                "produces": [
                     "application/json",
                     "application/xml"
                 ],
                 "responses": {
-                    "200":{
+                    "200": {
                         "description": "list of news",
-                    "schema":{
-                        "$ref": "#/definitions/news"
-                    }
+                        "schema": {
+                            "$ref": "#/definitions/news"
+                        }
                     }
                 }
             }
         },
-        "/news/{newsId}":{
+        "/news/{newsId}": {
             "get": {
                 "summary": "display news",
                 "operationId": "get all",
-                "tags": ["news"],
+                "tags": [
+                    "news"
+                ],
                 "description": "returns news info",
-                "consumes":[
+                "consumes": [
                     "application/json",
                     "application/xml"
                 ],
@@ -324,13 +417,74 @@
                         "name": "news",
                         "type": "string",
                         "description": "enter news id",
-                        "default":"60a1152e75566c33fc674c7f",
+                        "default": "60a1152e75566c33fc674c7f",
                         "required": true
                     }
                 ],
                 "responses": {
-                    "200":{
+                    "200": {
                         "description": "display all news"
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "summary": "do you have an account and login",
+                "operationId": "login post",
+                "tags": [
+                    "user"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "login",
+                        "description": "login in to ur account",
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    }
+                ],
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "login"
+                    }
+                }
+            }
+        },
+        "/user/signup": {
+            "post": {
+                "summary": "register",
+                "consumes": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "description": "create account",
+                "operationId": "sign up",
+                "tags": [
+                    "user"
+                ],
+                "produces": [
+                    "application/json",
+                    "application/xml"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "sign up",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "create new account"
                     }
                 }
             }
@@ -343,6 +497,54 @@
                 "description": {
                     "type": "string",
                     "example": "test"
+                }
+            }
+        },
+        "user": {
+            "properties": {
+                "firstname": {
+                    "type": "string",
+                    "example": "demeke"
+                },
+                "lastname": {
+                    "type": "string",
+                    "example": "lema"
+                },
+                "phone": {
+                    "type": "string",
+                    "example": "0914101010"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "qwe123"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "test@gmail.com"
+                }
+            }
+        },
+        "login": {
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "example": "test@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "example": "qwe123"
+                }
+            }
+        },
+        "product": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example":"banana"
+                },
+                "price":{
+                    "type":"number",
+                    "example":21
                 }
             }
         },

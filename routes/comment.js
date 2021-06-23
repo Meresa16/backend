@@ -5,7 +5,7 @@ var auth = require('../midleware/auth');
 
 
 router.post('/', commentController.create);
-router.get('/',  commentController.get_all_comment)
+router.get('/',   commentController.get_all_comment)
 router.get('/:id', commentController.get_comment)
 router.delete('/delet/:id', commentController.delete_comment)
 router.put('/update/:id', commentController.update_comment)

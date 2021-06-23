@@ -40,7 +40,7 @@ app.use('/document', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(express.static(__dirname + '/dist'))
+app.use(express.static(__dirname + '/dist/frontend'))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -48,7 +48,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors({ origin: 'http://localhost:4200' }));
-
+ 
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -93,6 +93,6 @@ mongoose.connect(process.env.MONGODB_URI || config.database, {
         } else {
             console.log(`successfully connected to ${config.database} and to hostname ${hostname}`);
         }
+        console.log(`server started`)
     });
-
 module.exports = app;

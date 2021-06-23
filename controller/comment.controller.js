@@ -37,8 +37,8 @@ function create(req, res, next) {
 }
 function get_all_comment(req, res, next) {
     commentModel.find()
-        // .select('description user _id')
-        // .populate('User',)
+        // .select('description ')
+         //.populate('User',)
         .exec()
         .then(doc => {
             if (!doc) {
@@ -48,16 +48,18 @@ function get_all_comment(req, res, next) {
             }
             else {
                 // console.log(doc)
-                res.json({
+                /* var today  = new Date();
+                console.log(today.toLocaleDateString("en-US")); // 9/17/2016 */
+               
+             res.json({
                     count: doc.length,
-
                     document: doc.map(data => {
                         return {
                             _id: data._id,
                             description: data.description,
-                            createdAt: data.createdAt,
-                            updatdAt: data.updatedAt,
-                            //email: data.user,
+                            createdAt: data.createdAt.toISOString().slice(0,10),
+                            updatdAt: data.updatedAt.toISOString().slice(0,10),
+           //                 email: data.user,
                             request: {
                                 type: "GET",
                                 url: "http://localhost:3000/api/comment/" + data._id
@@ -93,7 +95,7 @@ function get_comment(req, res, next) {
                     updatedAt: doc.updatedAt,
                     request: {
                         type: "GET",
-                        description: "click the link to get all comment ",
+                        description: "click here to get all comment ",
                         url: "http://localhost:3000/api/comment"
                     }
                 }

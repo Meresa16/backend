@@ -17,7 +17,7 @@ exports.getProducts = (req, res, next) => {
                         _id: doc._id,
                         request: {
                             type: 'GET',
-                            url: 'http://localhost:3000/product/' + doc._id
+                            url: 'http://localhost:3000/api/product/' + doc._id
                         }
 
                     }
@@ -40,11 +40,11 @@ exports.getProducts = (req, res, next) => {
         });
 }
 exports.createProduct = (req, res, next) => {
-
     const product = new productModel({
         _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
-        price: req.body.price
+        price: req.body.price,
+        image:req.file.path
     });
     product
         .save()
@@ -54,12 +54,14 @@ exports.createProduct = (req, res, next) => {
             res.status(200).json({
                 message: 'created product succssefully',
                 createdProduct: {
+                    _id: result._id,
                     name: result.name,
                     price: result.price,
-                    _id: result._id,
+                    image:result.image,
+                   
                     request: {
                         type: 'GET',
-                        url: 'http://localhost:3000/product/' + result._id
+                        url: 'http://localhost:3000/api/product/' + result._id
                     }
                 }
             });
@@ -89,7 +91,7 @@ exports.getProdut = (req, res, next) => {
                     request: {
                         type: "GET",
                         description: 'get all product',
-                        url: 'http://localhost:3000/product/'
+                        url: 'http://localhost:3000/api/product/'
                     }
                 });
             }
@@ -160,7 +162,7 @@ exports.deleteProduct = (req, res, next) => {
                 message: "product deleted",
                 request: {
                     type: 'POST',
-                    url: 'http://localhost:3000/product',
+                    url: 'http://localhost:3000/api/product',
                     body: { name: 'String', price: 'Number' }
                 }
             });

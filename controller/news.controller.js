@@ -21,6 +21,7 @@ exports.newsCreate = (req, res) => {
                     id:data._id,
                     tittle: data.tittle,
                     description: data.description
+
                 }
             })
         })
@@ -32,6 +33,7 @@ exports.newsCreate = (req, res) => {
             })
         })
 }
+
 exports.getNews = (req, res) => {
     NewsModel.find()
         .then(docs => {
@@ -91,7 +93,11 @@ exports.updateNews = (req, res) => {
                     tittle: doc.tittle,
                     description: doc.description,
                     updatedAt: doc.updatedAt,
-                    createdAt: doc.createdAt
+                    createdAt: doc.createdAt,
+                    request:{
+                        type:"get",
+                        url:"http://localhost:3000/api/news/"+doc.newsId
+                    }
                 }
             })
         }
@@ -110,6 +116,7 @@ NewsModel.findByIdAndRemove(req.params.newsId)
         message:"successfully deleted",
         request:{
             type:"GET",
+            url:"http://localhost:3000/api/news"
         }
     })
 }else{
